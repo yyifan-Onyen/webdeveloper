@@ -138,7 +138,8 @@ function validate() {
     });
 }
 
-const backend_host = "http://localhost:8080";
+// const backend_host = "http://localhost:8080";
+const backend_host = "https://webluca.azurewebsites.net"
 function uploadImage(data) {
   fetch(backend_host + "/images", {
     method: "POST",
