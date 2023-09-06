@@ -1,4 +1,4 @@
-package com.example.backend.com.example.backend.service;
+package com.example.backend.services;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -33,6 +33,7 @@ public class Rest {
     public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return "Hello " + name;
     }
+
 
 
     @PostMapping("/images")
@@ -81,6 +82,8 @@ public class Rest {
         InputStream targetStream = new ByteArrayInputStream(image);
         blobClient.upload(targetStream);
     }
+
+    
 }
 
 

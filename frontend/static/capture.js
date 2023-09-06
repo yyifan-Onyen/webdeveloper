@@ -153,6 +153,35 @@ function uploadImage(data) {
     });
 }
 
+function submitForm(event) {
+  event.preventDefault();
+  var context = canvas.getContext('2d');
+  canvas.width = width;
+  canvas.height = height;
+  context.drawImage(video, 0, 0, width, height);
+
+  var data = canvas.toDataURL('image/png');
+  photo.setAttribute('src', data);
+
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+
+  fetch(backend_host + '/form', {
+    method: 'POST',
+    body: JSON.stringify({
+      name: name, 
+      email: email, 
+      image: data
+    })
+  })
+    .then(result => {
+      console.log('Success:', result);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
 // Set up our event listener to run the startup process
 // once loading is complete.
 window.addEventListener("load", startup, false);
