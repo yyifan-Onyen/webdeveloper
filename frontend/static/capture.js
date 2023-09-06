@@ -174,12 +174,21 @@ function submitForm(event) {
       image: data
     })
   })
-    .then(result => {
-      console.log('Success:', result);
-    })
+  .then(response => {
+    // Check if the response is okay (status code in the range 200-299)
+    if (!response.ok) {
+      alert("Error");
+    }else{
+      alert("Success");
+    }
+    return response.json();  // or response.text() if the response is plain text
+  })
+    .then(data => {
+    console.log('Success:', data);
+  })
     .catch(error => {
-      console.error('Error:', error);
-    });
+    console.error('Error:', error);
+  });
 }
 
 // Set up our event listener to run the startup process
